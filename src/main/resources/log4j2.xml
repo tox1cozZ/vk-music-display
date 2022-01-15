@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="baseDir">logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss}] [%t/%p] (%c{1}) - %msg%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=white, DEBUG=green bold, TRACE=blue}" />
+        </Console>
+        <RollingRandomAccessFile name="File" fileName="${baseDir}/latest.log" filePattern="${baseDir}/%d{yyyy-MM-dd_HH-mm-ss}.log.gz" ignoreExceptions="false">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%t/%p] (%logger{36}.%M:%L) - %msg%n" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy interval="86400" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}">
+                    <IfFileName glob="*.log.gz" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+        <logger name="io.netty" level="INFO"/>
+        <logger name="net.cosycubes.vkmusicdisplay" level="DEBUG"/>
+        <logger name="ktor.application" level="DEBUG"/>
+    </Loggers>
+</Configuration>

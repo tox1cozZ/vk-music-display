@@ -1,0 +1,8 @@
+.idea/*
+!/.idea/runConfigurations
+
+.gradle
+out
+build
+
+run
