@@ -6,6 +6,6 @@ How it works: the program parses the page and looks for the currently playing tr
 Therefore, for everything to work, you need to include the broadcast of music in the status.
 Also, the page must be open for Internet.
 
-Endpoint: http://ip:port/current/{userId}
+Endpoint: http://ip:port/music/{userId}
 
 Run: java -jar vk-music-display-1.0.0-all.jar {port}
