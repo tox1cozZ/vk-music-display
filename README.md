@@ -1,6 +1,6 @@
 # vk-music-display
 
-It can be useful if you need to display the current track on the stream via obs, for example.
+It can be useful if you need to display the current track on the stream via OBS, for example.
 
 Endpoint: http://ip:port/current/{userId}
 
