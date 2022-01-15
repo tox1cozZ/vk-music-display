@@ -4,6 +4,7 @@ It can be useful if you need to display the current track on the stream via OBS,
 
 How it works: the program parses the page and looks for the currently playing track in the status. 
 Therefore, for everything to work, you need to include the broadcast of music in the status.
+Also, the page must be open for Internet.
 
 Endpoint: http://ip:port/current/{userId}
 
