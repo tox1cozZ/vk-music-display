@@ -27,7 +27,7 @@
             <AppenderRef ref="File"/>
         </Root>
         <logger name="io.netty" level="INFO"/>
-        <logger name="net.cosycubes.vkmusicdisplay" level="DEBUG"/>
-        <logger name="ktor.application" level="DEBUG"/>
+        <logger name="net.cosycubes.vkmusicdisplay" level="TRACE"/>
+        <logger name="ktor.application" level="TRACE"/>
     </Loggers>
 </Configuration>

@@ -13,15 +13,20 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
 const val CURRENT_MUSIC_ELEMENT_SELECTOR = "a.current_audio"
+var lastSong = "Что-то пошло не так..."
 
 fun main(args: Array<String>) {
     val port = args[0].toInt()
     embeddedServer(Netty, port) {
         routing {
             get("/music/{userId}") {
-                val id = call.parameters["userId"]
+                val id = call.parameters["userId"]!!
                 val pageUrl = "https://vk.com/${id}"
-                val currentMusic = fetchCurrentPlaying(pageUrl)
+                val currentMusic = try {
+                    fetchCurrentPlaying(pageUrl)
+                } catch (e: Throwable) {
+                    lastSong
+                }
                 call.respondText(currentMusic)
             }
         }
@@ -43,7 +48,8 @@ private suspend fun fetchCurrentPlaying(pageUrl: String): String = withContext(D
     if (currentAudio != null) {
         currentAudio.text().trim()
     } else {
-        val information: Element = document.selectFirst("div.message_page_body") ?: return@withContext ""
+        val information: Element =
+            document.selectFirst("div.message_page_body") ?: return@withContext ""
         val text = information.text().trim()
         return@withContext when {
             text.contains("deleted", true) && text.contains("created", true) -> notFoundMessage
