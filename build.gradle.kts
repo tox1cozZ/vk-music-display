@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -51,3 +50,10 @@ tasks.withType<Jar> {
 val build by tasks.getting
 val shadowJar by tasks.getting
 build.dependsOn(shadowJar)
+
+// Heroku
+val clean by tasks.getting
+tasks.register("stage") {
+    dependsOn(build, clean)
+}
+build.mustRunAfter(clean)

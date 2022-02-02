@@ -1,0 +1,1 @@
+web: java -jar build/libs/vk-music-display-1.0.0-all.jar $PORT
