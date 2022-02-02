@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     val port = args[0].toInt()
     embeddedServer(Netty, port) {
         routing {
-            get("/music/{userId}") {
+            get("/{userId}") {
                 val id = call.parameters["userId"]!!
                 val pageUrl = "https://vk.com/${id}"
                 val currentMusic = try {
