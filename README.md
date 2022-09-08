@@ -14,4 +14,4 @@ Run: java -jar vk-music-display-1.0.0-all.jar {port}
 
 # Public application:
 
-https://vk-music-display.herokuapp.com/{userId}
+https://web-production-5aa5.up.railway.app/{userId}
